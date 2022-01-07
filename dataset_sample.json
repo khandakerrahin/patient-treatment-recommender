@@ -1,0 +1,1403 @@
+{
+    "Conditions" : [
+      {
+        "id": "c_00001",
+        "name": "AAA screening",
+        "type": "Blood",
+        "severity": "extreme",
+        "duration": "Temporary",
+        "contagious": true
+      },
+      {
+          "id": "c_00002",
+          "name": "AAA, see Abdominal aortic aneurysm",
+          "type": "Cancer and neoplasms",
+          "severity": "minor",
+          "duration": "Temporary",
+          "contagious": false
+      },
+      {
+          "id": "c_00003",
+          "name": "Abdominal aortic aneurysm",
+          "type": "Cardiovascular",
+          "severity": "extreme",
+          "duration": "Temporary",
+          "contagious": false
+      },
+      {
+          "id": "c_00004",
+          "name": "Abdominal aortic aneurysm screening",
+          "type": "Congenital disorders",
+          "severity": "major",
+          "duration": "Temporary",
+          "contagious": false
+      },
+      {
+          "id": "c_00005",
+          "name": "Abdominal Pain",
+          "type": "Ear",
+          "severity": "moderate",
+          "duration": "Permanent",
+          "contagious": true
+      },
+      {
+          "id": "c_00006",
+          "name": "Ablation",
+          "type": "Eye",
+          "severity": "moderate",
+          "duration": "Permanent",
+          "contagious": false
+      },
+      {
+          "id": "c_00007",
+          "name": "Abortion",
+          "type": "Infection",
+          "severity": "minor",
+          "duration": "Temporary",
+          "contagious": false
+      },
+      {
+          "id": "c_00008",
+          "name": "Abortion",
+          "type": "Inflammatory and immune system",
+          "severity": "major",
+          "duration": "Permanent",
+          "contagious": false
+      },
+      {
+          "id": "c_00009",
+          "name": "Abscess",
+          "type": "Injuries and accidents",
+          "severity": "moderate",
+          "duration": "Permanent",
+          "contagious": true
+      },
+      {
+          "id": "c_00010",
+          "name": "Acanthosis nigricans",
+          "type": "Mental health",
+          "severity": "minor",
+          "duration": "Permanent",
+          "contagious": false
+      }
+    ],
+    "Therapies": [
+      {
+        "id": "th_00001",
+        "name": "Abortive therapy",
+        "type": "Curative"
+      },
+      {
+          "id": "th_00002",
+          "name": "Abscopal effect",
+          "type": "Curative"
+      },
+      {
+          "id": "th_00003",
+          "name": "Acai",
+          "type": "Palliative"
+      },
+      {
+          "id": "th_00004",
+          "name": "Accelerated Experiential Dynamic Psychotherapy (AEDP)",
+          "type": "Palliative"
+      },
+      {
+          "id": "th_00005",
+          "name": "Dialectical Behavior Therapy (DBT)",
+          "type": "Palliative"
+      },
+      {
+          "id": "th_00006",
+          "name": "Diaphragm pacing",
+          "type": "Preventative"
+      },
+      {
+          "id": "th_00007",
+          "name": "diathermy",
+          "type": "Preventative"
+      },
+      {
+          "id": "th_00008",
+          "name": "Holotropic Breathwork",
+          "type": "Preventative"
+      },
+      {
+          "id": "th_00009",
+          "name": "Homeopathy",
+          "type": "Preventative"
+      },
+      {
+          "id": "th_00010",
+          "name": "hormonal therapy (oncology)",
+          "type": "Curative"
+      },
+      {
+          "id": "th_00011",
+          "name": "hormone replacement therapy",
+          "type": "Curative"
+      },
+      {
+          "id": "th_00012",
+          "name": "Accelerated Resolution Therapy (ART)",
+          "type": "Curative"
+      },
+      {
+          "id": "th_00013",
+          "name": "Acceptance and Commitment Therapy (ACT)",
+          "type": "Curative"
+      },
+      {
+          "id": "th_00014",
+          "name": "Acne treatments",
+          "type": "Palliative"
+      },
+      {
+          "id": "th_00015",
+          "name": "acupressure (some scientific aspects, many prescientific)",
+          "type": "Palliative"
+      },
+      {
+          "id": "th_00016",
+          "name": "diesel therapy (ironic name)",
+          "type": "Palliative"
+      },
+      {
+          "id": "th_00017",
+          "name": "Diet",
+          "type": "Preventative"
+      },
+      {
+          "id": "th_00018",
+          "name": "Dietary Supplements",
+          "type": "Preventative"
+      },
+      {
+          "id": "th_00019",
+          "name": "Hormone therapy",
+          "type": "Preventative"
+      },
+      {
+          "id": "th_00020",
+          "name": "hormone therapy",
+          "type": "Preventative"
+      }
+    ],
+    "Patients": [
+      {
+        "id": 1,
+        "name": "Nkou",
+        "condition": [],
+        "trials": []
+      },
+      {
+          "id": 2,
+          "name": "Cristian",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20150728",
+                  "cured": "20150801",
+                  "kind": "c_01414"
+              },
+              {
+                  "id": "pc_00002",
+                  "diagnosed": "20151216",
+                  "cured": "20151219",
+                  "kind": "c_01121"
+              },
+              {
+                  "id": "pc_00003",
+                  "diagnosed": "20141120",
+                  "cured": "20141127",
+                  "kind": "c_01120"
+              },
+              {
+                  "id": "pc_00004",
+                  "diagnosed": "20170728",
+                  "cured": "20170804",
+                  "kind": "c_00643"
+              },
+              {
+                  "id": "pc_00005",
+                  "diagnosed": "20211031",
+                  "cured": "20211109",
+                  "kind": "c_01003"
+              }
+          ],
+          "trials": []
+      },
+      {
+          "id": 3,
+          "name": "Ekoa",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20180117",
+                  "cured": "20180122",
+                  "kind": "c_00635"
+              },
+              {
+                  "id": "pc_00002",
+                  "diagnosed": "20181115",
+                  "cured": "20181121",
+                  "kind": "c_00153"
+              },
+              {
+                  "id": "pc_00003",
+                  "diagnosed": "20140801",
+                  "cured": "20140806",
+                  "kind": "c_00590"
+              },
+              {
+                  "id": "pc_00004",
+                  "diagnosed": "20150123",
+                  "cured": "20150124",
+                  "kind": "c_00654"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20171229",
+                  "end": "20171229",
+                  "condition": "pc_00001",
+                  "therapy": "th_00449",
+                  "successful": 33
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20120724",
+                  "end": "20120729",
+                  "condition": "pc_00004",
+                  "therapy": "th_00184",
+                  "successful": 26
+              },
+              {
+                  "id": "tr_00003",
+                  "start": "20111209",
+                  "end": "20111212",
+                  "condition": "pc_00001",
+                  "therapy": "th_00544",
+                  "successful": 62
+              },
+              {
+                  "id": "tr_00004",
+                  "start": "20190630",
+                  "end": "20190709",
+                  "condition": "pc_00002",
+                  "therapy": "th_00177",
+                  "successful": 29
+              },
+              {
+                  "id": "tr_00005",
+                  "start": "20190807",
+                  "end": "20190816",
+                  "condition": "pc_00002",
+                  "therapy": "th_00634",
+                  "successful": 94
+              },
+              {
+                  "id": "tr_00006",
+                  "start": "20170406",
+                  "end": "20170411",
+                  "condition": "pc_00003",
+                  "therapy": "th_00351",
+                  "successful": 15
+              },
+              {
+                  "id": "tr_00007",
+                  "start": "20150909",
+                  "end": "20150916",
+                  "condition": "pc_00001",
+                  "therapy": "th_00075",
+                  "successful": 9
+              }
+          ]
+      },
+      {
+          "id": 4,
+          "name": "Tagne",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20160718",
+                  "cured": "20160722",
+                  "kind": "c_00915"
+              },
+              {
+                  "id": "pc_00002",
+                  "diagnosed": "20100227",
+                  "cured": "20100306",
+                  "kind": "c_00543"
+              },
+              {
+                  "id": "pc_00003",
+                  "diagnosed": "20140406",
+                  "cured": "20140414",
+                  "kind": "c_01426"
+              },
+              {
+                  "id": "pc_00004",
+                  "diagnosed": "20170728",
+                  "cured": "20170803",
+                  "kind": "c_01555"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20120104",
+                  "end": "20120109",
+                  "condition": "pc_00001",
+                  "therapy": "th_00133",
+                  "successful": 15
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20200501",
+                  "end": "20200510",
+                  "condition": "pc_00001",
+                  "therapy": "th_00495",
+                  "successful": 84
+              },
+              {
+                  "id": "tr_00003",
+                  "start": "20200409",
+                  "end": "20200411",
+                  "condition": "pc_00001",
+                  "therapy": "th_00395",
+                  "successful": 44
+              },
+              {
+                  "id": "tr_00004",
+                  "start": "20200307",
+                  "end": "20200314",
+                  "condition": "pc_00002",
+                  "therapy": "th_00645",
+                  "successful": 4
+              },
+              {
+                  "id": "tr_00005",
+                  "start": "20180531",
+                  "end": "20180605",
+                  "condition": "pc_00003",
+                  "therapy": "th_00499",
+                  "successful": 3
+              },
+              {
+                  "id": "tr_00006",
+                  "start": "20140731",
+                  "end": "20140806",
+                  "condition": "pc_00004",
+                  "therapy": "th_00635",
+                  "successful": 0
+              },
+              {
+                  "id": "tr_00007",
+                  "start": "20210621",
+                  "end": "20210621",
+                  "condition": "pc_00003",
+                  "therapy": "th_00394",
+                  "successful": 87
+              },
+              {
+                  "id": "tr_00008",
+                  "start": "20110609",
+                  "end": "20110611",
+                  "condition": "pc_00002",
+                  "therapy": "th_00531",
+                  "successful": 61
+              }
+          ]
+      },
+      {
+          "id": 5,
+          "name": "Nwatchock",
+          "condition": [],
+          "trials": []
+      },
+      {
+          "id": 6,
+          "name": "Brice",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20100912",
+                  "cured": "20100913",
+                  "kind": "c_00825"
+              },
+              {
+                  "id": "pc_00002",
+                  "diagnosed": "20120903",
+                  "cured": "20120908",
+                  "kind": "c_00433"
+              },
+              {
+                  "id": "pc_00003",
+                  "diagnosed": "20180915",
+                  "cured": "20180925",
+                  "kind": "c_00498"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20131128",
+                  "end": "20131204",
+                  "condition": "pc_00003",
+                  "therapy": "th_00368",
+                  "successful": 58
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20101231",
+                  "end": "20110105",
+                  "condition": "pc_00003",
+                  "therapy": "th_00208",
+                  "successful": 50
+              },
+              {
+                  "id": "tr_00003",
+                  "start": "20111201",
+                  "end": "20111207",
+                  "condition": "pc_00002",
+                  "therapy": "th_00490",
+                  "successful": 75
+              },
+              {
+                  "id": "tr_00004",
+                  "start": "20100817",
+                  "end": "20100820",
+                  "condition": "pc_00003",
+                  "therapy": "th_00149",
+                  "successful": 25
+              },
+              {
+                  "id": "tr_00005",
+                  "start": "20120415",
+                  "end": "20120424",
+                  "condition": "pc_00003",
+                  "therapy": "th_00081",
+                  "successful": 53
+              },
+              {
+                  "id": "tr_00006",
+                  "start": "20180820",
+                  "end": "20180827",
+                  "condition": "pc_00003",
+                  "therapy": "th_00352",
+                  "successful": 68
+              },
+              {
+                  "id": "tr_00007",
+                  "start": "20180522",
+                  "end": "20180524",
+                  "condition": "pc_00001",
+                  "therapy": "th_00093",
+                  "successful": 85
+              },
+              {
+                  "id": "tr_00008",
+                  "start": "20210917",
+                  "end": "20210917",
+                  "condition": "pc_00002",
+                  "therapy": "th_00010",
+                  "successful": 99
+              },
+              {
+                  "id": "tr_00009",
+                  "start": "20170913",
+                  "end": "20170921",
+                  "condition": "pc_00003",
+                  "therapy": "th_00336",
+                  "successful": 10
+              },
+              {
+                  "id": "tr_00010",
+                  "start": "20160817",
+                  "end": "20160822",
+                  "condition": "pc_00003",
+                  "therapy": "th_00206",
+                  "successful": 14
+              }
+          ]
+      },
+      {
+          "id": 7,
+          "name": "Diallo",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20191110",
+                  "cured": "20191112",
+                  "kind": "c_00922"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20120322",
+                  "end": "20120325",
+                  "condition": "pc_00001",
+                  "therapy": "th_00076",
+                  "successful": 45
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20180517",
+                  "end": "20180523",
+                  "condition": "pc_00001",
+                  "therapy": "th_00326",
+                  "successful": 28
+              },
+              {
+                  "id": "tr_00003",
+                  "start": "20141117",
+                  "end": "20141125",
+                  "condition": "pc_00001",
+                  "therapy": "th_00030",
+                  "successful": 63
+              },
+              {
+                  "id": "tr_00004",
+                  "start": "20150505",
+                  "end": "20150513",
+                  "condition": "pc_00001",
+                  "therapy": "th_00273",
+                  "successful": 19
+              },
+              {
+                  "id": "tr_00005",
+                  "start": "20191001",
+                  "end": "20191011",
+                  "condition": "pc_00001",
+                  "therapy": "th_00050",
+                  "successful": 86
+              },
+              {
+                  "id": "tr_00006",
+                  "start": "20110312",
+                  "end": "20110322",
+                  "condition": "pc_00001",
+                  "therapy": "th_00009",
+                  "successful": 39
+              },
+              {
+                  "id": "tr_00007",
+                  "start": "20131018",
+                  "end": "20131026",
+                  "condition": "pc_00001",
+                  "therapy": "th_00549",
+                  "successful": 25
+              },
+              {
+                  "id": "tr_00008",
+                  "start": "20131125",
+                  "end": "20131130",
+                  "condition": "pc_00001",
+                  "therapy": "th_00176",
+                  "successful": 74
+              }
+          ]
+      },
+      {
+          "id": 8,
+          "name": "Baba",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20120618",
+                  "cured": "20120618",
+                  "kind": "c_01501"
+              },
+              {
+                  "id": "pc_00002",
+                  "diagnosed": "20120531",
+                  "cured": "20120602",
+                  "kind": "c_00682"
+              },
+              {
+                  "id": "pc_00003",
+                  "diagnosed": "20131213",
+                  "cured": "20131219",
+                  "kind": "c_00144"
+              },
+              {
+                  "id": "pc_00004",
+                  "diagnosed": "20120626",
+                  "cured": "20120703",
+                  "kind": "c_00651"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20100104",
+                  "end": "20100107",
+                  "condition": "pc_00003",
+                  "therapy": "th_00529",
+                  "successful": 54
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20151008",
+                  "end": "20151013",
+                  "condition": "pc_00004",
+                  "therapy": "th_00438",
+                  "successful": 88
+              },
+              {
+                  "id": "tr_00003",
+                  "start": "20120229",
+                  "end": "20120302",
+                  "condition": "pc_00004",
+                  "therapy": "th_00531",
+                  "successful": 2
+              },
+              {
+                  "id": "tr_00004",
+                  "start": "20141006",
+                  "end": "20141015",
+                  "condition": "pc_00002",
+                  "therapy": "th_00628",
+                  "successful": 24
+              },
+              {
+                  "id": "tr_00005",
+                  "start": "20130331",
+                  "end": "20130405",
+                  "condition": "pc_00003",
+                  "therapy": "th_00170",
+                  "successful": 76
+              },
+              {
+                  "id": "tr_00006",
+                  "start": "20150414",
+                  "end": "20150416",
+                  "condition": "pc_00002",
+                  "therapy": "th_00134",
+                  "successful": 46
+              },
+              {
+                  "id": "tr_00007",
+                  "start": "20120623",
+                  "end": "20120703",
+                  "condition": "pc_00003",
+                  "therapy": "th_00137",
+                  "successful": 10
+              },
+              {
+                  "id": "tr_00008",
+                  "start": "20111003",
+                  "end": "20111009",
+                  "condition": "pc_00001",
+                  "therapy": "th_00197",
+                  "successful": 49
+              },
+              {
+                  "id": "tr_00009",
+                  "start": "20100606",
+                  "end": "20100614",
+                  "condition": "pc_00004",
+                  "therapy": "th_00427",
+                  "successful": 1
+              },
+              {
+                  "id": "tr_00010",
+                  "start": "20130408",
+                  "end": "20130413",
+                  "condition": "pc_00003",
+                  "therapy": "th_00362",
+                  "successful": 9
+              }
+          ]
+      },
+      {
+          "id": 9,
+          "name": "Philomenr",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20140317",
+                  "cured": "20140321",
+                  "kind": "c_01423"
+              },
+              {
+                  "id": "pc_00002",
+                  "diagnosed": "20201209",
+                  "cured": "20201209",
+                  "kind": "c_01570"
+              },
+              {
+                  "id": "pc_00003",
+                  "diagnosed": "20100616",
+                  "cured": "20100624",
+                  "kind": "c_00145"
+              },
+              {
+                  "id": "pc_00004",
+                  "diagnosed": "20191221",
+                  "cured": "20191231",
+                  "kind": "c_01327"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20110307",
+                  "end": "20110317",
+                  "condition": "pc_00004",
+                  "therapy": "th_00272",
+                  "successful": 62
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20121210",
+                  "end": "20121220",
+                  "condition": "pc_00003",
+                  "therapy": "th_00115",
+                  "successful": 15
+              },
+              {
+                  "id": "tr_00003",
+                  "start": "20120809",
+                  "end": "20120815",
+                  "condition": "pc_00004",
+                  "therapy": "th_00381",
+                  "successful": 79
+              },
+              {
+                  "id": "tr_00004",
+                  "start": "20201207",
+                  "end": "20201210",
+                  "condition": "pc_00003",
+                  "therapy": "th_00329",
+                  "successful": 79
+              },
+              {
+                  "id": "tr_00005",
+                  "start": "20160921",
+                  "end": "20160922",
+                  "condition": "pc_00003",
+                  "therapy": "th_00357",
+                  "successful": 88
+              }
+          ]
+      },
+      {
+          "id": 10,
+          "name": "Evina",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20180726",
+                  "cured": "20180728",
+                  "kind": "c_01521"
+              },
+              {
+                  "id": "pc_00002",
+                  "diagnosed": "20130324",
+                  "cured": "20130402",
+                  "kind": "c_00083"
+              },
+              {
+                  "id": "pc_00003",
+                  "diagnosed": "20100718",
+                  "cured": "20100724",
+                  "kind": "c_00917"
+              },
+              {
+                  "id": "pc_00004",
+                  "diagnosed": "20110621",
+                  "cured": "20110622",
+                  "kind": "c_00700"
+              },
+              {
+                  "id": "pc_00005",
+                  "diagnosed": "20140414",
+                  "cured": "20140421",
+                  "kind": "c_00092"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20161017",
+                  "end": "20161027",
+                  "condition": "pc_00001",
+                  "therapy": "th_00442",
+                  "successful": 46
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20150817",
+                  "end": "20150817",
+                  "condition": "pc_00003",
+                  "therapy": "th_00596",
+                  "successful": 63
+              }
+          ]
+      },
+      {
+          "id": 11,
+          "name": "Paul",
+          "condition": [],
+          "trials": []
+      },
+      {
+          "id": 12,
+          "name": "Le Petroli\u00e9",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20150906",
+                  "cured": "20150908",
+                  "kind": "c_01450"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20131226",
+                  "end": "20140102",
+                  "condition": "pc_00001",
+                  "therapy": "th_00623",
+                  "successful": 41
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20130114",
+                  "end": "20130122",
+                  "condition": "pc_00001",
+                  "therapy": "th_00032",
+                  "successful": 88
+              },
+              {
+                  "id": "tr_00003",
+                  "start": "20130731",
+                  "end": "20130803",
+                  "condition": "pc_00001",
+                  "therapy": "th_00196",
+                  "successful": 57
+              },
+              {
+                  "id": "tr_00004",
+                  "start": "20170816",
+                  "end": "20170825",
+                  "condition": "pc_00001",
+                  "therapy": "th_00309",
+                  "successful": 5
+              },
+              {
+                  "id": "tr_00005",
+                  "start": "20140411",
+                  "end": "20140411",
+                  "condition": "pc_00001",
+                  "therapy": "th_00490",
+                  "successful": 2
+              }
+          ]
+      },
+      {
+          "id": 13,
+          "name": "Embola",
+          "condition": [],
+          "trials": []
+      },
+      {
+          "id": 14,
+          "name": "Joshua",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20170302",
+                  "cured": "20170304",
+                  "kind": "c_01734"
+              },
+              {
+                  "id": "pc_00002",
+                  "diagnosed": "20160519",
+                  "cured": "20160521",
+                  "kind": "c_00056"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20150114",
+                  "end": "20150115",
+                  "condition": "pc_00002",
+                  "therapy": "th_00054",
+                  "successful": 66
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20141223",
+                  "end": "20141227",
+                  "condition": "pc_00002",
+                  "therapy": "th_00605",
+                  "successful": 28
+              },
+              {
+                  "id": "tr_00003",
+                  "start": "20170531",
+                  "end": "20170601",
+                  "condition": "pc_00002",
+                  "therapy": "th_00594",
+                  "successful": 91
+              },
+              {
+                  "id": "tr_00004",
+                  "start": "20200407",
+                  "end": "20200409",
+                  "condition": "pc_00002",
+                  "therapy": "th_00555",
+                  "successful": 96
+              },
+              {
+                  "id": "tr_00005",
+                  "start": "20201110",
+                  "end": "20201113",
+                  "condition": "pc_00002",
+                  "therapy": "th_00325",
+                  "successful": 36
+              },
+              {
+                  "id": "tr_00006",
+                  "start": "20120929",
+                  "end": "20121003",
+                  "condition": "pc_00001",
+                  "therapy": "th_00422",
+                  "successful": 36
+              },
+              {
+                  "id": "tr_00007",
+                  "start": "20131220",
+                  "end": "20131225",
+                  "condition": "pc_00001",
+                  "therapy": "th_00277",
+                  "successful": 2
+              }
+          ]
+      },
+      {
+          "id": 15,
+          "name": "Ngo",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20110804",
+                  "cured": "20110810",
+                  "kind": "c_01723"
+              },
+              {
+                  "id": "pc_00002",
+                  "diagnosed": "20160628",
+                  "cured": "20160704",
+                  "kind": "c_01417"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20160207",
+                  "end": "20160207",
+                  "condition": "pc_00001",
+                  "therapy": "th_00209",
+                  "successful": 4
+              }
+          ]
+      },
+      {
+          "id": 16,
+          "name": "Armelle",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20100705",
+                  "cured": "20100715",
+                  "kind": "c_01001"
+              },
+              {
+                  "id": "pc_00002",
+                  "diagnosed": "20130224",
+                  "cured": "20130227",
+                  "kind": "c_00865"
+              },
+              {
+                  "id": "pc_00003",
+                  "diagnosed": "20120709",
+                  "cured": "20120709",
+                  "kind": "c_01055"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20180423",
+                  "end": "20180426",
+                  "condition": "pc_00002",
+                  "therapy": "th_00396",
+                  "successful": 90
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20150722",
+                  "end": "20150729",
+                  "condition": "pc_00003",
+                  "therapy": "th_00679",
+                  "successful": 100
+              },
+              {
+                  "id": "tr_00003",
+                  "start": "20140811",
+                  "end": "20140821",
+                  "condition": "pc_00001",
+                  "therapy": "th_00345",
+                  "successful": 8
+              },
+              {
+                  "id": "tr_00004",
+                  "start": "20180421",
+                  "end": "20180422",
+                  "condition": "pc_00001",
+                  "therapy": "th_00089",
+                  "successful": 52
+              },
+              {
+                  "id": "tr_00005",
+                  "start": "20120414",
+                  "end": "20120417",
+                  "condition": "pc_00002",
+                  "therapy": "th_00161",
+                  "successful": 67
+              }
+          ]
+      },
+      {
+          "id": 17,
+          "name": "Alomba",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20100812",
+                  "cured": "20100819",
+                  "kind": "c_00500"
+              },
+              {
+                  "id": "pc_00002",
+                  "diagnosed": "20210224",
+                  "cured": "20210228",
+                  "kind": "c_00871"
+              },
+              {
+                  "id": "pc_00003",
+                  "diagnosed": "20200322",
+                  "cured": "20200324",
+                  "kind": "c_00574"
+              },
+              {
+                  "id": "pc_00004",
+                  "diagnosed": "20100124",
+                  "cured": "20100128",
+                  "kind": "c_00880"
+              },
+              {
+                  "id": "pc_00005",
+                  "diagnosed": "20210123",
+                  "cured": "20210128",
+                  "kind": "c_01023"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20160530",
+                  "end": "20160607",
+                  "condition": "pc_00002",
+                  "therapy": "th_00260",
+                  "successful": 6
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20200629",
+                  "end": "20200701",
+                  "condition": "pc_00001",
+                  "therapy": "th_00444",
+                  "successful": 38
+              },
+              {
+                  "id": "tr_00003",
+                  "start": "20210801",
+                  "end": "20210807",
+                  "condition": "pc_00002",
+                  "therapy": "th_00271",
+                  "successful": 88
+              },
+              {
+                  "id": "tr_00004",
+                  "start": "20161211",
+                  "end": "20161212",
+                  "condition": "pc_00003",
+                  "therapy": "th_00556",
+                  "successful": 14
+              },
+              {
+                  "id": "tr_00005",
+                  "start": "20170414",
+                  "end": "20170424",
+                  "condition": "pc_00002",
+                  "therapy": "th_00344",
+                  "successful": 72
+              }
+          ]
+      },
+      {
+          "id": 18,
+          "name": "Bil",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20170804",
+                  "cured": "20170804",
+                  "kind": "c_00715"
+              },
+              {
+                  "id": "pc_00002",
+                  "diagnosed": "20100701",
+                  "cured": "20100706",
+                  "kind": "c_01146"
+              },
+              {
+                  "id": "pc_00003",
+                  "diagnosed": "20180112",
+                  "cured": "20180116",
+                  "kind": "c_01425"
+              },
+              {
+                  "id": "pc_00004",
+                  "diagnosed": "20130909",
+                  "cured": "20130910",
+                  "kind": "c_00193"
+              },
+              {
+                  "id": "pc_00005",
+                  "diagnosed": "20100420",
+                  "cured": "20100425",
+                  "kind": "c_00316"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20111029",
+                  "end": "20111102",
+                  "condition": "pc_00001",
+                  "therapy": "th_00415",
+                  "successful": 51
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20190720",
+                  "end": "20190721",
+                  "condition": "pc_00005",
+                  "therapy": "th_00220",
+                  "successful": 20
+              }
+          ]
+      },
+      {
+          "id": 19,
+          "name": "Nadia",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20190922",
+                  "cured": "20190923",
+                  "kind": "c_00171"
+              },
+              {
+                  "id": "pc_00002",
+                  "diagnosed": "20120606",
+                  "cured": "20120613",
+                  "kind": "c_00222"
+              },
+              {
+                  "id": "pc_00003",
+                  "diagnosed": "20141122",
+                  "cured": "20141201",
+                  "kind": "c_00940"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20180102",
+                  "end": "20180102",
+                  "condition": "pc_00003",
+                  "therapy": "th_00204",
+                  "successful": 2
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20171014",
+                  "end": "20171018",
+                  "condition": "pc_00003",
+                  "therapy": "th_00401",
+                  "successful": 19
+              },
+              {
+                  "id": "tr_00003",
+                  "start": "20121020",
+                  "end": "20121024",
+                  "condition": "pc_00002",
+                  "therapy": "th_00395",
+                  "successful": 36
+              },
+              {
+                  "id": "tr_00004",
+                  "start": "20100115",
+                  "end": "20100117",
+                  "condition": "pc_00002",
+                  "therapy": "th_00548",
+                  "successful": 31
+              },
+              {
+                  "id": "tr_00005",
+                  "start": "20140513",
+                  "end": "20140521",
+                  "condition": "pc_00001",
+                  "therapy": "th_00132",
+                  "successful": 63
+              },
+              {
+                  "id": "tr_00006",
+                  "start": "20110820",
+                  "end": "20110825",
+                  "condition": "pc_00003",
+                  "therapy": "th_00465",
+                  "successful": 26
+              },
+              {
+                  "id": "tr_00007",
+                  "start": "20200209",
+                  "end": "20200217",
+                  "condition": "pc_00001",
+                  "therapy": "th_00204",
+                  "successful": 4
+              },
+              {
+                  "id": "tr_00008",
+                  "start": "20110607",
+                  "end": "20110616",
+                  "condition": "pc_00002",
+                  "therapy": "th_00534",
+                  "successful": 74
+              },
+              {
+                  "id": "tr_00009",
+                  "start": "20131206",
+                  "end": "20131207",
+                  "condition": "pc_00002",
+                  "therapy": "th_00369",
+                  "successful": 90
+              }
+          ]
+      },
+      {
+          "id": 20,
+          "name": "Rahin",
+          "condition": [
+              {
+                  "id": "pc_00001",
+                  "diagnosed": "20110109",
+                  "cured": "20110110",
+                  "kind": "c_01087"
+              }
+          ],
+          "trials": [
+              {
+                  "id": "tr_00001",
+                  "start": "20160204",
+                  "end": "20160209",
+                  "condition": "pc_00001",
+                  "therapy": "th_00412",
+                  "successful": 23
+              },
+              {
+                  "id": "tr_00002",
+                  "start": "20130103",
+                  "end": "20130113",
+                  "condition": "pc_00001",
+                  "therapy": "th_00486",
+                  "successful": 29
+              },
+              {
+                  "id": "tr_00003",
+                  "start": "20150131",
+                  "end": "20150206",
+                  "condition": "pc_00001",
+                  "therapy": "th_00581",
+                  "successful": 59
+              },
+              {
+                  "id": "tr_00004",
+                  "start": "20150108",
+                  "end": "20150114",
+                  "condition": "pc_00001",
+                  "therapy": "th_00143",
+                  "successful": 69
+              },
+              {
+                  "id": "tr_00005",
+                  "start": "20101208",
+                  "end": "20101211",
+                  "condition": "pc_00001",
+                  "therapy": "th_00053",
+                  "successful": 47
+              },
+              {
+                  "id": "tr_00006",
+                  "start": "20121012",
+                  "end": "20121017",
+                  "condition": "pc_00001",
+                  "therapy": "th_00170",
+                  "successful": 72
+              },
+              {
+                  "id": "tr_00007",
+                  "start": "20130209",
+                  "end": "20130214",
+                  "condition": "pc_00001",
+                  "therapy": "th_00337",
+                  "successful": 2
+              },
+              {
+                  "id": "tr_00008",
+                  "start": "20160409",
+                  "end": "20160418",
+                  "condition": "pc_00001",
+                  "therapy": "th_00154",
+                  "successful": 50
+              },
+              {
+                  "id": "tr_00009",
+                  "start": "20170725",
+                  "end": "20170727",
+                  "condition": "pc_00001",
+                  "therapy": "th_00590",
+                  "successful": 33
+              },
+              {
+                  "id": "tr_00010",
+                  "start": "20150621",
+                  "end": "20150627",
+                  "condition": "pc_00001",
+                  "therapy": "th_00225",
+                  "successful": 91
+              }
+          ]
+      }
+      ]
+}
