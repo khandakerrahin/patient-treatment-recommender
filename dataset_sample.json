@@ -187,13 +187,32 @@
       {
         "id": 1,
         "name": "Nkou",
-        "condition": [],
+        "conditions": [
+            {
+                "id": "pc_00001",
+                "diagnosed": "20150728",
+                "cured": "20150801",
+                "kind": "c_01414"
+            },
+            {
+                "id": "pc_00002",
+                "diagnosed": "20151216",
+                "cured": "20151219",
+                "kind": "c_01121"
+            },
+            {
+                "id": "pc_00003",
+                "diagnosed": "20141120",
+                "cured": "20141127",
+                "kind": "c_01120"
+            }
+        ],
         "trials": []
       },
       {
           "id": 2,
           "name": "Cristian",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20150728",
@@ -230,7 +249,7 @@
       {
           "id": 3,
           "name": "Ekoa",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20180117",
@@ -318,7 +337,7 @@
       {
           "id": 4,
           "name": "Tagne",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20160718",
@@ -414,13 +433,13 @@
       {
           "id": 5,
           "name": "Nwatchock",
-          "condition": [],
+          "conditions": [],
           "trials": []
       },
       {
           "id": 6,
           "name": "Brice",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20100912",
@@ -526,7 +545,7 @@
       {
           "id": 7,
           "name": "Diallo",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20191110",
@@ -604,7 +623,7 @@
       {
           "id": 8,
           "name": "Baba",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20120618",
@@ -716,7 +735,7 @@
       {
           "id": 9,
           "name": "Philomenr",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20140317",
@@ -788,7 +807,7 @@
       {
           "id": 10,
           "name": "Evina",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20180726",
@@ -842,13 +861,13 @@
       {
           "id": 11,
           "name": "Paul",
-          "condition": [],
+          "conditions": [],
           "trials": []
       },
       {
           "id": 12,
           "name": "Le Petroli\u00e9",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20150906",
@@ -902,13 +921,13 @@
       {
           "id": 13,
           "name": "Embola",
-          "condition": [],
+          "conditions": [],
           "trials": []
       },
       {
           "id": 14,
           "name": "Joshua",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20170302",
@@ -984,7 +1003,7 @@
       {
           "id": 15,
           "name": "Ngo",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20110804",
@@ -1012,12 +1031,12 @@
       {
           "id": 16,
           "name": "Armelle",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20100705",
                   "cured": "20100715",
-                  "kind": "c_01001"
+                  "kind": "c_01120"
               },
               {
                   "id": "pc_00002",
@@ -1030,6 +1049,18 @@
                   "diagnosed": "20120709",
                   "cured": "20120709",
                   "kind": "c_01055"
+              },
+              {
+                  "id": "pc_00004",
+                  "diagnosed": "20170728",
+                  "cured": "20170804",
+                  "kind": "c_00643"
+              },
+              {
+                  "id": "pc_00005",
+                  "diagnosed": "20211031",
+                  "cured": "20211109",
+                  "kind": "c_01003"
               }
           ],
           "trials": [
@@ -1078,7 +1109,7 @@
       {
           "id": 17,
           "name": "Alomba",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20100812",
@@ -1156,7 +1187,7 @@
       {
           "id": 18,
           "name": "Bil",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20170804",
@@ -1210,7 +1241,7 @@
       {
           "id": 19,
           "name": "Nadia",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20190922",
@@ -1308,7 +1339,7 @@
       {
           "id": 20,
           "name": "Rahin",
-          "condition": [
+          "conditions": [
               {
                   "id": "pc_00001",
                   "diagnosed": "20110109",
