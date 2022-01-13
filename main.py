@@ -86,81 +86,229 @@ def create_therapies_dataframe(filename):
     df.to_csv(r'DF_Therapies_temp.csv', index=None)
 
 
-def create_patients_dataframe(filename):
+def create_patients_cases_dataframe(filename):
     with open(filename, encoding="utf8") as f:
         data = json.load(f)
 
     # trials
     df_trials = pd.json_normalize(data['Patients'], "trials", ["id", "name"], errors='ignore', record_prefix='_')
 
-    # df_trials.sort_values('_id')
-    # df_trials.to_csv(r'DF_Trials_temp.csv', index=None)
-
     # conditions
     df_conditions = pd.json_normalize(data['Patients'], "conditions", "id", errors='ignore', record_prefix='_')
 
-    # df_conditions.sort_values('_id')
-    # df_conditions.to_csv(r'DF_Conditions_temp.csv', index=None)
-
     # print(df_trials)
-    # print()
-    # print()
     # print(df_conditions)
 
     merged_df = pd.merge(df_trials, df_conditions, how='left', left_on=['_condition', 'id'], right_on=['_id', 'id'])
-    # merged_df.sort_values('_id')
-    # merged_df.to_csv(r'DF_Patients_temp.csv', index=None)
-
-    # print()
-    # print()
     # print(merged_df)
-    # merged_df.sort_values('_id')
-    merged_df.to_csv(r'DF_Patients_temp.csv', index=None)
+    merged_df.to_csv(r'DF_Patients_cases.csv', index=None)
 
 
-# def get_user_similar_conditions( user1, user2 ):
-#     common_movies = Rating_avg[Rating_avg.userId == user1].merge(
-#     Rating_avg[Rating_avg.userId == user2],
-#     on = "movieId",
-#     how = "inner" )
-#     return common_movies.merge( movies, on = 'movieId' )
-
-
-def create_patients_condition_dataframe(filename):
-    with open(filename, encoding="utf8") as f:
+def create_patients_similarity_by_condition(filename):
+    with open(filename, encoding="unicode_escape") as f:
         data = json.load(f)
 
     # conditions
     df_conditions = pd.json_normalize(data['Patients'], "conditions", "id", errors='ignore', record_prefix='_')
 
-    # df_conditions.sort_values('_id')
-    # df_conditions.to_csv(r'DF_Conditions_temp.csv', index=None)
-
-    # print(df_conditions)
     df_conditions = df_conditions.groupby(['_kind', 'id']).size().unstack(fill_value=0)
-
     # print(df_conditions)
 
-    # df_conditions.to_csv(r'condition_user_matrix.csv')
+    similarity_df = df_conditions.corr(method='pearson')
+    display(similarity_df.head(10))
 
-    user_similarity_df = df_conditions.corr(method='pearson')
-    display(user_similarity_df.head(10))
+    # top 5 neighbours
+    similar_neighbours = find_n_neighbours(similarity_df, 5)
+    display(similar_neighbours.head(20))
 
-    # a = get_user_similar_conditions(370, 86309)
-    # a = a.loc[:, ['rating_x_x', 'rating_x_y', 'Condition']]
-    # a.head()
+    similar_neighbours.to_csv(r'similar_patients_by_condition.csv')
 
-    # top 30 neighbours for each user
-    sim_user_30_u = find_n_neighbours(user_similarity_df, 5)
-    display(sim_user_30_u.head(20))
 
-    sim_user_30_u.to_csv(r'sim_user_30_u.csv')
+def create_patients_similarity_by_therapies(filename):
+    with open(filename, encoding="unicode_escape") as f:
+        data = json.load(f)
 
-    # merged_df = pd.merge(df_trials, df_conditions, how='left', left_on=['_condition', 'id'], right_on=['_id', 'id'])
-    # merged_df.sort_values('_id')
-    # merged_df.to_csv(r'DF_Patients_temp.csv', index=None)
+    # therapy
+    df_therapy = pd.json_normalize(data['Patients'], "trials", "id", errors='ignore', record_prefix='_')
+    # print(df_conditions)
 
-    # merged_df.to_csv(r'DF_Patients_temp.csv', index=None)
+    df_therapy = df_therapy.groupby(['_therapy', 'id']).size().unstack(fill_value=0)
+    # print(df_conditions)
+
+    similarity_df = df_therapy.corr(method='pearson')
+    display(similarity_df.head(10))
+
+    # top 5 neighbours
+    similar_neighbours = find_n_neighbours(similarity_df, 5)
+    display(similar_neighbours.head(20))
+
+    similar_neighbours.to_csv(r'similar_patients_by_therapy.csv')
+
+
+def create_conditions_similarity_by_patients(filename):
+    with open(filename, encoding="unicode_escape") as f:
+        data = json.load(f)
+
+    # conditions
+    df_conditions = pd.json_normalize(data['Patients'], "conditions", "id", errors='ignore', record_prefix='_')
+
+    df_conditions = df_conditions.groupby(['id', '_kind']).size().unstack(fill_value=0)
+    # print(df_conditions)
+
+    similarity_df = df_conditions.corr(method='pearson')
+    display(similarity_df.head(10))
+
+    # top 5 neighbours
+    similar_neighbours = find_n_neighbours(similarity_df, 5)
+    display(similar_neighbours.head(20))
+
+    similar_neighbours.to_csv(r'similar_conditions_by_patients.csv')
+
+
+def create_therapies_similarity_by_patients(filename):
+    with open(filename, encoding="unicode_escape") as f:
+        data = json.load(f)
+
+    # therapy
+    df_therapy = pd.json_normalize(data['Patients'], "trials", "id", errors='ignore', record_prefix='_')
+
+    df_therapy = df_therapy.groupby(['id', '_therapy']).size().unstack(fill_value=0)
+    # print(df_conditions)
+
+    similarity_df = df_therapy.corr(method='pearson')
+    display(similarity_df.head(10))
+
+    # top 5 neighbours
+    similar_neighbours = find_n_neighbours(similarity_df, 5)
+    display(similar_neighbours.head(20))
+
+    similar_neighbours.to_csv(r'similar_therapies_by_patients.csv')
+
+
+def create_patients_therapies_similarity_by_success(filename):
+    with open(filename, encoding="unicode_escape") as f:
+        data = json.load(f)
+
+    # therapy
+    df_therapy = pd.json_normalize(data['Patients'], "trials", "id", errors='ignore', record_prefix='_')
+
+    patient_therapy_matrix = df_therapy.pivot_table(index='id', columns='_therapy', values='_successful')
+
+    # patient_therapy_matrix = patient_therapy_matrix.fillna(0)
+    # patient_therapy_matrix = patient_therapy_matrix.fillna(condition_therapy_matrix.mean(axis=0))
+    display(patient_therapy_matrix.head(20))
+
+    patient_therapy_matrix.to_csv(r'patient_therapy_matrix.csv')
+
+    # top 5 neighbours
+    similar_neighbours = find_n_neighbours(patient_therapy_matrix, 5)
+    display(similar_neighbours.head(20))
+
+    similar_neighbours.to_csv(r'patient_therapy_similarity.csv')
+
+
+def create_conditions_therapies_similarity_by_success(filename):
+    with open(filename, encoding="unicode_escape") as f:
+        data = json.load(f)
+
+    # trials
+    df_trials = pd.json_normalize(data['Patients'], "trials", ["id", "name"], errors='ignore', record_prefix='_')
+
+    # conditions
+    df_conditions = pd.json_normalize(data['Patients'], "conditions", "id", errors='ignore', record_prefix='_')
+
+    # print(df_trials)
+    # print(df_conditions)
+
+    merged_df = pd.merge(df_trials, df_conditions, how='left', left_on=['_condition', 'id'], right_on=['_id', 'id'])
+    # print(merged_df)
+
+    condition_therapy_matrix = merged_df.pivot_table(index='_kind', columns='_therapy', values='_successful')
+
+    # condition_therapy_matrix = condition_therapy_matrix.fillna(0)
+    # condition_therapy_matrix = condition_therapy_matrix.fillna(condition_therapy_matrix.mean(axis=0))
+    display(condition_therapy_matrix.head(20))
+
+    condition_therapy_matrix.to_csv(r'condition_therapy_matrix.csv')
+
+    # similarity_df = condition_therapy_matrix.corr(method='pearson')
+    # display(similarity_df.head(10))
+
+    # print(check_if_below_average(condition_therapy_matrix, 0.24))
+
+    # top 5 neighbours
+    similar_neighbours = find_n_neighbours(condition_therapy_matrix, 10)
+    display(similar_neighbours.head(20))
+
+    similar_neighbours.to_csv(r'conditions_therapies_similarity.csv')
+
+
+def create_therapies_similarity_by_therapies(filename):
+    with open(filename, encoding="unicode_escape") as f:
+        data = json.load(f)
+
+    df_conditions = pd.json_normalize(data['Therapies'])
+
+    print(df_conditions)
+
+    df_conditions = df_conditions.groupby(['type', 'id']).size().unstack(fill_value=0)
+    # print(df_conditions)
+
+    similarity_df = df_conditions.corr(method='pearson')
+    display(similarity_df.head(10))
+    similarity_df.to_csv(r'similar_therapies_scores.csv')
+
+    # print(check_if_below_average(similarity_df, 0.24))
+
+    # top 5 neighbours
+    similar_neighbours = find_n_neighbours(similarity_df, 5)
+    display(similar_neighbours.head(20))
+
+    similar_neighbours.to_csv(r'similar_therapies_by_therapies.csv')
+
+
+def create_conditions_similarity_by_conditions(filename):
+    with open(filename, encoding="unicode_escape") as f:
+        data = json.load(f)
+
+    df_conditions = pd.json_normalize(data['Conditions'])
+
+    print(df_conditions)
+
+    df_conditions = df_conditions.groupby(['type', 'id']).size().unstack(fill_value=0)
+    # print(df_conditions)
+
+    similarity_df = df_conditions.corr(method='pearson')
+    display(similarity_df.head(10))
+    similarity_df.to_csv(r'similar_conditions_scores.csv')
+
+    # top 5 neighbours
+    similar_neighbours = find_n_neighbours(similarity_df, 5)
+    display(similar_neighbours.head(20))
+
+    similar_neighbours.to_csv(r'similar_conditions_by_conditions.csv')
+
+
+def get_min_df(dataframe, index):
+    return dataframe.iloc[index].min()
+
+
+def get_max_df(dataframe, index):
+    return dataframe.iloc[index].max()
+
+
+def check_if_below_average(dataframe, value):
+    min_value = get_min_df(dataframe, 0)
+    max_value = get_max_df(dataframe, 0)
+
+    print('Min: ', min_value)
+    print('Max: ', max_value)
+
+    average_value = (min_value+max_value)/2
+
+    # print(average_value)
+
+    return value < average_value
 
 
 def find_n_neighbours(df, n):
@@ -182,48 +330,55 @@ def get_therapy_recommendation():
 
 
 def main():
-    # print(get_unique_file_name('dataframe_sample_', '.csv'))
-
     # print file summary
-    print_dataset_summary(dataset)
-    create_conditions_dataframe(dataset)
-    create_therapies_dataframe(dataset)
-    create_patients_dataframe(dataset)
-    create_patients_condition_dataframe(dataset)
+    # print_dataset_summary(dataset)
 
-    # trial_df = pd.read_csv("DF_Patients_temp.csv", encoding="unicode_escape")
+    # create_conditions_dataframe(dataset)
+    # create_therapies_dataframe(dataset)
+    # create_patients_cases_dataframe(dataset)
 
-    # display(trial_df.head())
-
-    # display(trial_df.describe())
-    # display(pd.DataFrame(trial_df.groupby('_kind')['_successful'].mean()))
-
-    # success_rate = pd.DataFrame(trial_df.groupby('_kind')['_successful'].mean())
-    # # display(success_rate.head())
-    # success_rate['count'] = trial_df.groupby('_kind')['_successful'].count()
-    # # display(success_rate.head())
-    #
-    # display(sns.jointplot(x='_successful', y='count', data=success_rate))
-    #
-    # plt.show()
-    # therapy_user_matrix = trial_df.pivot_table(index='id', columns='_therapy', values='_successful')
-    # display(therapy_user_matrix.head())
-
-    # therapy_user_matrix.to_csv(r'RAHIN-01.csv', index=None)
-
-    # therapy_user_matrix = trial_df.pivot_table(index='_kind', columns=['id'], values='_successful')
-    # therapy_user_matrix = therapy_user_matrix.fillna(0)
-    # display(therapy_user_matrix.head())
-    #
-    # therapy_user_matrix.to_csv(r'therapy_user_matrix.csv')
-    #
-    # item_similarity_df = therapy_user_matrix.corr(method='pearson')
-    # display(item_similarity_df.head(50))
-    #
-    # item_similarity_df.to_csv(r'item_similarity_df.csv')
-
-    # print(item_similarity_df['c_00056'])
+    # create_patients_similarity_by_condition(dataset)
+    # create_patients_similarity_by_therapies(dataset)
+    # create_conditions_similarity_by_patients(dataset)
+    # create_therapies_similarity_by_patients(dataset)
+    # create_conditions_similarity_by_conditions(dataset)
+    # create_therapies_similarity_by_therapies(dataset)
+    # create_conditions_therapies_similarity_by_success(dataset)    # top successful therapies for a condition
+    create_patients_therapies_similarity_by_success(dataset)    # top successful therapies for a patient
 
 
 if __name__ == '__main__':
     main()
+
+# PLOTTING CODES
+# trial_df = pd.read_csv("DF_Patients_temp.csv", encoding="unicode_escape")
+
+# display(trial_df.head())
+
+# display(trial_df.describe())
+# display(pd.DataFrame(trial_df.groupby('_kind')['_successful'].mean()))
+
+# success_rate = pd.DataFrame(trial_df.groupby('_kind')['_successful'].mean())
+# # display(success_rate.head())
+# success_rate['count'] = trial_df.groupby('_kind')['_successful'].count()
+# # display(success_rate.head())
+#
+# display(sns.jointplot(x='_successful', y='count', data=success_rate))
+#
+# plt.show()
+# therapy_user_matrix = trial_df.pivot_table(index='id', columns='_therapy', values='_successful')
+# display(therapy_user_matrix.head())
+
+# therapy_user_matrix.to_csv(r'RAHIN-01.csv', index=None)
+
+# therapy_user_matrix = trial_df.pivot_table(index='_kind', columns=['id'], values='_successful')
+# therapy_user_matrix = therapy_user_matrix.fillna(0)
+# display(therapy_user_matrix.head())
+#
+# therapy_user_matrix.to_csv(r'therapy_user_matrix.csv')
+#
+# item_similarity_df = therapy_user_matrix.corr(method='pearson')
+# display(item_similarity_df.head(50))
+#
+# item_similarity_df.to_csv(r'item_similarity_df.csv')
+# print(item_similarity_df['c_00056'])

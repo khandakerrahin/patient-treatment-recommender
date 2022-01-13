@@ -51,7 +51,7 @@
       {
           "id": "c_00007",
           "name": "Abortion",
-          "type": "Infection",
+          "type": "Cardiovascular",
           "severity": "minor",
           "duration": "Temporary",
           "contagious": false
@@ -377,7 +377,7 @@
                   "start": "20200501",
                   "end": "20200510",
                   "condition": "pc_00001",
-                  "therapy": "th_00495",
+                  "therapy": "th_00209",
                   "successful": 84
               },
               {
@@ -1147,7 +1147,7 @@
                   "start": "20160530",
                   "end": "20160607",
                   "condition": "pc_00002",
-                  "therapy": "th_00260",
+                  "therapy": "th_00209",
                   "successful": 6
               },
               {
