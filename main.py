@@ -7,6 +7,7 @@
 # imports
 import json
 import random
+import traceback
 from datetime import datetime
 
 import matplotlib
@@ -151,7 +152,7 @@ def create_patients_similarity_by_therapies(filename):
     similar_neighbours = find_n_neighbours(similarity_df, 5)
     display(similar_neighbours.head(20))
 
-    similar_neighbours.to_csv(r'similar_patients_by_therapy.csv')
+    # similar_neighbours.to_csv(r'similar_patients_by_therapy.csv')
 
 
 def create_conditions_similarity_by_patients(filename):
@@ -171,7 +172,7 @@ def create_conditions_similarity_by_patients(filename):
     similar_neighbours = find_n_neighbours(similarity_df, 5)
     display(similar_neighbours.head(20))
 
-    similar_neighbours.to_csv(r'similar_conditions_by_patients.csv')
+    # similar_neighbours.to_csv(r'similar_conditions_by_patients.csv')
 
 
 def create_therapies_similarity_by_patients(filename):
@@ -182,7 +183,7 @@ def create_therapies_similarity_by_patients(filename):
     df_therapy = pd.json_normalize(data['Patients'], "trials", "id", errors='ignore', record_prefix='_')
 
     df_therapy = df_therapy.groupby(['id', '_therapy']).size().unstack(fill_value=0)
-    # print(df_conditions)
+    print(df_therapy)
 
     similarity_df = df_therapy.corr(method='pearson')
     display(similarity_df.head(10))
@@ -191,41 +192,74 @@ def create_therapies_similarity_by_patients(filename):
     similar_neighbours = find_n_neighbours(similarity_df, 5)
     display(similar_neighbours.head(20))
 
-    similar_neighbours.to_csv(r'similar_therapies_by_patients.csv')
+    # similar_neighbours.to_csv(r'similar_therapies_by_patients.csv')
 
 
-def create_patients_therapies_similarity_by_success(filename, patient_id):
+def get_patient_therapies_ranking(filename, patient_id):
     with open(filename, encoding="unicode_escape") as f:
         data = json.load(f)
 
     # therapy
     df_therapy = pd.json_normalize(data['Patients'], "trials", "id", errors='ignore', record_prefix='_')
-
+    # print(df_therapy)
     patient_therapy_matrix = df_therapy.pivot_table(index='id', columns='_therapy', values='_successful')
 
     # patient_therapy_matrix = patient_therapy_matrix.fillna(0)
     # patient_therapy_matrix = patient_therapy_matrix.fillna(condition_therapy_matrix.mean(axis=0))
-    display(patient_therapy_matrix.head(20))
+    # display(patient_therapy_matrix.head(20))
 
-    patient_therapy_matrix.to_csv(r'patient_therapy_matrix.csv')
+    # patient_therapy_matrix.to_csv(r'patient_therapy_matrix.csv')
 
     # top 5 neighbours
     similar_neighbours = find_n_neighbours(patient_therapy_matrix, therapy_count)
-    display(similar_neighbours.head(20))
+    # display(similar_neighbours.head(20))
+    # print('HERE', patient_id)
+    # similar_neighbours.to_csv(r'patient_therapy_similarity.csv')
+    df_therapy = df_therapy[df_therapy['id'] == int(patient_id)]
+    # print(df_therapy)
+    df_therapy = df_therapy.groupby('_therapy')['_successful'].mean()
 
-    similar_neighbours.to_csv(r'patient_therapy_similarity.csv')
+    # print('FILTERED AND GROUPED FOR '+condition)
+    # print(df_therapy)
 
     rowData = similar_neighbours.loc[int(patient_id), :]
-    print('Top Therapies for ' + patient_id + ': ')
+    print('Top Successful Therapies for USER:' + patient_id)
+
+    df_ranked = pd.DataFrame(columns=['Therapy', 'Success'])
+
     for items in rowData:
-        print(items)
+        try:
+            df_ranked = df_ranked.append({'Therapy': items, 'Success': df_therapy[items]}, ignore_index=True)
+        except:
+            break
+    print(df_ranked)
+    # dfg = df_ranked.describe()
+    # print('DESCRIOTION:')
+    # print(dfg)
+    # dfg.to_csv(r'BASSBSSADDDDDDDDEEE.csv')
 
 
-def global_therapies_recommendation_for_conditions_by_success(filename, condition):
-    trials_df = pd.read_csv("DF_Patients_cases.csv", encoding="unicode_escape")
+def global_therapies_recommendation_for_conditions_by_success(filename, condition, count):
+    with open(filename, encoding="utf8") as f:
+        data = json.load(f)
+
+    # trials
+    df_trials = pd.json_normalize(data['Patients'], "trials", ["id", "name"], errors='ignore', record_prefix='_')
+
+    # conditions
+    df_conditions = pd.json_normalize(data['Patients'], "conditions", "id", errors='ignore', record_prefix='_')
+
+    # print(df_trials)
+    # print(df_conditions)
+
+    trials_df = pd.merge(df_trials, df_conditions, how='left', left_on=['_condition', 'id'], right_on=['_id', 'id'])
 
     condition_therapy_matrix = trials_df.pivot_table(index='_kind', columns='_therapy', values='_successful')
 
+    # dfg = condition_therapy_matrix.describe()
+    # print('DESCRIOTION:')
+    # print(dfg)
+    # dfg.to_csv(r'BASSBEEE.csv')
     # condition_therapy_matrix = condition_therapy_matrix.fillna(0)
     # condition_therapy_matrix = condition_therapy_matrix.fillna(condition_therapy_matrix.mean(axis=0))
     # display(condition_therapy_matrix.head(20))
@@ -238,7 +272,7 @@ def global_therapies_recommendation_for_conditions_by_success(filename, conditio
     # print(check_if_below_average(condition_therapy_matrix, 0.24))
 
     # top 5 neighbours
-    similar_neighbours = find_n_neighbours(condition_therapy_matrix, 5)
+    similar_neighbours = find_n_neighbours(condition_therapy_matrix, count)
     # display(similar_neighbours.head(20))
 
     # similar_neighbours.to_csv(r'conditions_therapies_similarity.csv')
@@ -252,12 +286,16 @@ def global_therapies_recommendation_for_conditions_by_success(filename, conditio
     # print(trials_df)
 
     rowData = similar_neighbours.loc[condition, :]
-    print('Top Therapies for ' + condition + ': ')
+    print('Top Recommended Therapies for ' + condition + ': ')
+    df_ranked = pd.DataFrame(columns=['Therapy', 'Success'])
+
     for items in rowData:
         try:
-            print(items, trials_df[items])
+            df_ranked = df_ranked.append({'Therapy': items, 'Success': trials_df[items]}, ignore_index=True)
         except:
             break
+    print(df_ranked['Therapy'][0])
+    return df_ranked
 
 
 def create_therapies_similarity_by_therapies(filename):
@@ -273,7 +311,7 @@ def create_therapies_similarity_by_therapies(filename):
 
     similarity_df = df_conditions.corr(method='pearson')
     display(similarity_df.head(10))
-    similarity_df.to_csv(r'similar_therapies_scores.csv')
+    # similarity_df.to_csv(r'similar_therapies_scores.csv')
 
     # print(check_if_below_average(similarity_df, 0.24))
 
@@ -281,7 +319,7 @@ def create_therapies_similarity_by_therapies(filename):
     similar_neighbours = find_n_neighbours(similarity_df, 5)
     display(similar_neighbours.head(20))
 
-    similar_neighbours.to_csv(r'similar_therapies_by_therapies.csv')
+    # similar_neighbours.to_csv(r'similar_therapies_by_therapies.csv')
 
 
 def create_conditions_similarity_by_conditions(filename):
@@ -297,13 +335,13 @@ def create_conditions_similarity_by_conditions(filename):
 
     similarity_df = df_conditions.corr(method='pearson')
     display(similarity_df.head(10))
-    similarity_df.to_csv(r'similar_conditions_scores.csv')
+    # similarity_df.to_csv(r'similar_conditions_scores.csv')
 
     # top 5 neighbours
     similar_neighbours = find_n_neighbours(similarity_df, 5)
     display(similar_neighbours.head(20))
 
-    similar_neighbours.to_csv(r'similar_conditions_by_conditions.csv')
+    # similar_neighbours.to_csv(r'similar_conditions_by_conditions.csv')
 
 
 def get_min_df(dataframe, index):
@@ -321,7 +359,7 @@ def check_if_below_average(dataframe, value):
     print('Min: ', min_value)
     print('Max: ', max_value)
 
-    average_value = (min_value+max_value)/2
+    average_value = (min_value + max_value) / 2
 
     # print(average_value)
 
@@ -375,7 +413,8 @@ def get_useful_features(data):
     useful_features = []
 
     for c in range(0, data.shape[0]):
-        useful_features.append(data['id'][c] + ' ' + data['_kind'][c] + ' ' + data['_therapy'][c] + ' ' + data['_successful'][c])
+        useful_features.append(
+            data['id'][c] + ' ' + data['_kind'][c] + ' ' + data['_therapy'][c] + ' ' + data['_successful'][c])
 
     return useful_features
 
@@ -393,36 +432,34 @@ def get_condition_id(filename, patient_condition_id):
     return cond_id
 
 
-def get_patient_therapies_ranking(patient_condition_id):
-    trials_df = pd.read_csv("DF_Patients_cases.csv", encoding="unicode_escape")
-    row_cond = trials_df.loc[trials_df['_condition'] == patient_condition_id]
-    cond_id = row_cond['_kind'].values[0]
-    # print('BLA ConditionID: ', cond_id)
-    return cond_id
+# def get_patient_therapies_ranking(patient_condition_id, filename):
+#     with open(filename, encoding="utf8") as f:
+#         data = json.load(f)
+#
+#     # trials
+#     df_trials = pd.json_normalize(data['Patients'], "trials", ["id", "name"], errors='ignore', record_prefix='_')
+#
+#     # conditions
+#     df_conditions = pd.json_normalize(data['Patients'], "conditions", "id", errors='ignore', record_prefix='_')
+#
+#     # print(df_trials)
+#     # print(df_conditions)
+#
+#     trials_df = pd.merge(df_trials, df_conditions, how='left', left_on=['_condition', 'id'], right_on=['_id', 'id'])
+#
+#     row_cond = trials_df.loc[trials_df['_condition'] == patient_condition_id]
+#     cond_id = row_cond['_kind'].values[0]
+#     # print('BLA ConditionID: ', cond_id)
+#     return cond_id
 
 
 def get_therapy_recommendation(patient_id, patient_condition, dataset):
-
     # TODO recommendation based on HYBRID: ITEM-ITEM COLLABORATIVE FILTERING and Global Baseline Estimate
     # get Global recommendation
-    global_therapies_recommendation_for_conditions_by_success(dataset, patient_condition)
+    global_top_therapy_for_condition = global_therapies_recommendation_for_conditions_by_success(dataset, patient_condition, 1)
 
-    # create_patients_therapies_similarity_by_success(dataset, patient_id)
-    # get_patient_therapies_ranking
-    # create_conditions_dataframe(dataset)
-    # create_therapies_dataframe(dataset)
-    # create_patients_cases_dataframe(dataset)
+    # get_patient_therapies_ranking(dataset, patient_id)
 
-    # create_patients_similarity_by_condition(dataset)
-    # create_patients_similarity_by_therapies(dataset)
-    # create_conditions_similarity_by_patients(dataset)
-    # create_therapies_similarity_by_patients(dataset)
-    # create_conditions_similarity_by_conditions(dataset)
-    # create_therapies_similarity_by_therapies(dataset)
-    # create_conditions_therapies_similarity_by_success(dataset)    # top successful therapies for a condition
-    # create_patients_therapies_similarity_by_success(dataset)    # top successful therapies for a patient
-
-    # TODO cases
     # TODO recommendation based on USER-USER COLLABORATIVE FILTERING
     # create_patients_similarity_by_condition(dataset)
 
@@ -434,16 +471,16 @@ def get_therapy_recommendation(patient_id, patient_condition, dataset):
     # filtered_df = filter_df_features(dataset)
 
     # TODO retreat
-    # filtered_df = filter_df_features(dataset)
+    filtered_df = filter_df_features(dataset)
     # display(filtered_df.head())
     # display(filtered_df.describe())
-    #
-    # # creating mean success_rate for treatments
-    # success_rate = pd.DataFrame(filtered_df.groupby('_therapy')['_successful'].mean())
+
+    # creating mean success_rate for treatments
+    success_rate = pd.DataFrame(filtered_df.groupby('_therapy')['_successful'].mean())
     # display(success_rate.head())
-    #
-    # # creating number_of_successful_trials
-    # success_rate['number_of_successful_trials'] = filtered_df.groupby('_therapy')['_successful'].count()
+
+    # creating number_of_successful_trials
+    success_rate['number_of_successful_trials'] = filtered_df.groupby('_therapy')['_successful'].count()
     # display(success_rate.head())
 
     # # plotting the jointplot
@@ -466,22 +503,45 @@ def get_therapy_recommendation(patient_id, patient_condition, dataset):
     #
     # plt.show()
 
-    # creating Condition-Therapy Interaction Matrix
-    # therapy_matrix_CTI = filtered_df.pivot_table(index='_kind', columns='_therapy', values='_successful')
+    # creating User-Therapy Interaction Matrix
+    therapy_matrix_CTI = filtered_df.pivot_table(index='id', columns='_therapy', values='_successful')
     # display(therapy_matrix_CTI.head())
-    #
-    # # most successful therapies
+
+    # most successful therapies
     # display(success_rate.sort_values('number_of_successful_trials', ascending=False).head())
+
+    # Making Recommendation for a specific Famous Therapy IE: Th33
+    specific_therapy_patient_success_rate = therapy_matrix_CTI[global_top_therapy_for_condition['Therapy'][0]]
+    # print(specific_therapy_patient_success_rate)
+
+    # finding the correlation with different Therapies
+    similar_to_specific_therapy = therapy_matrix_CTI.corrwith(specific_therapy_patient_success_rate)
+
+    # display(similar_to_specific_therapy.head(10))
+
+    # create a threshold for minimum number of trials
+    # creating a dataframe to bring in #of trials
+    corr_specific_therapy = pd.DataFrame(similar_to_specific_therapy, columns=['Correlation'])
+    corr_specific_therapy.dropna(inplace=True)
+    # display(corr_specific_therapy.head())
+
+    # adding success_rate
+    corr_specific_therapy = corr_specific_therapy.join(success_rate['number_of_successful_trials'])
+    # display(corr_specific_therapy.head())
+
+    # filtering out by selecting most applied therapies
+    recommended_therapies_df = corr_specific_therapy[corr_specific_therapy['number_of_successful_trials'] > 18500].sort_values(by='Correlation', ascending=False).head(10)
+    display(recommended_therapies_df.head(5))
 
 
 def main():
     # input Dataset, patient and condition
 
-    # dataset = 'datasetB.json'
-    # cases = "datasetB_cases.txt"
+    dataset = 'datasetB.json'
+    cases = "datasetB_cases.txt"
 
-    dataset = 'dataset_shaker.json'
-    cases = "dataset_shaker_cases.txt"
+    # dataset = 'dataset_shaker.json'
+    # cases = "dataset_shaker_cases.txt"
 
     # dataset = 'dataset_sample.json'
     # cases = "dataset_sample_cases.txt"
@@ -490,16 +550,14 @@ def main():
 
     # print Dataset summary
     print_dataset_summary(dataset)
-    create_patients_trials_dataframe(dataset)
+    # create_patients_trials_dataframe(dataset)
 
     with open(cases, newline='') as file_in:
         next(file_in)
         for row in file_in:
             row = row.strip()
-            row = row.split('\t\t')
-
-            patient_id = row[0]
-            patient_condition = row[1]
+            patient_id = row.split(None, 1)[0]
+            patient_condition = row.split(None, 1)[1]
 
             print('PatientID: ', patient_id)
             print('Patient_condition: ', patient_condition)
@@ -509,7 +567,8 @@ def main():
                 print('Condition: ', original_condition_id, '\n')
 
                 get_therapy_recommendation(patient_id, original_condition_id, dataset)
-            except:
+            except Exception:
+                print(traceback.format_exc())
                 print('Condition NOT FOUND. Retrieval failed from the Dataset.')
 
             print()
