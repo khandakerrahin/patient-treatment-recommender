@@ -27,6 +27,7 @@ therapy_count = 0
 patient_count = 0
 trial_count = 0
 
+
 def get_current_datetime_string():
     # datetime object containing current date and time
     now = datetime.now()
@@ -63,7 +64,7 @@ def print_dataset_summary(filename):
     print('# Patients: ', patient_count)
     print('# Trials: ', trial_count, '\n')
 
-0
+
 def get_keys_string(data):
     keys_string = ''
     for x in data[0].keys():
@@ -401,6 +402,13 @@ def get_patient_therapies_ranking(patient_condition_id):
 
 
 def get_therapy_recommendation(patient_id, patient_condition, dataset):
+
+    # TODO recommendation based on HYBRID: ITEM-ITEM COLLABORATIVE FILTERING and Global Baseline Estimate
+    # get Global recommendation
+    global_therapies_recommendation_for_conditions_by_success(dataset, patient_condition)
+
+    # create_patients_therapies_similarity_by_success(dataset, patient_id)
+    # get_patient_therapies_ranking
     # create_conditions_dataframe(dataset)
     # create_therapies_dataframe(dataset)
     # create_patients_cases_dataframe(dataset)
@@ -424,15 +432,6 @@ def get_therapy_recommendation(patient_id, patient_condition, dataset):
 
     # TODO ALGO CS
     # filtered_df = filter_df_features(dataset)
-
-    # TODO recommendation based on HYBRID: Global Baseline Estimate
-    # get Global recommendation
-    global_therapies_recommendation_for_conditions_by_success(dataset, patient_condition)
-
-
-    # create_patients_therapies_similarity_by_success(dataset, patient_id)
-    # get_patient_therapies_ranking
-
 
     # TODO retreat
     # filtered_df = filter_df_features(dataset)
@@ -475,22 +474,25 @@ def get_therapy_recommendation(patient_id, patient_condition, dataset):
     # display(success_rate.sort_values('number_of_successful_trials', ascending=False).head())
 
 
-    return 0
-
-
 def main():
-    # input Dataset
-    dataset = 'datasetB.json'
-    # dataset = 'dataset_sample.json'
+    # input Dataset, patient and condition
 
-    # input patient and condition
-    input_file = "datasetB_cases.txt"
+    # dataset = 'datasetB.json'
+    # cases = "datasetB_cases.txt"
+
+    dataset = 'dataset_shaker.json'
+    cases = "dataset_shaker_cases.txt"
+
+    # dataset = 'dataset_sample.json'
+    # cases = "dataset_sample_cases.txt"
+
+    # input
 
     # print Dataset summary
     print_dataset_summary(dataset)
     create_patients_trials_dataframe(dataset)
 
-    with open(input_file, newline='') as file_in:
+    with open(cases, newline='') as file_in:
         next(file_in)
         for row in file_in:
             row = row.strip()
@@ -502,46 +504,17 @@ def main():
             print('PatientID: ', patient_id)
             print('Patient_condition: ', patient_condition)
 
-            original_condition_id = get_condition_id(dataset, patient_condition)
-            print('Condition: ', original_condition_id, '\n')
+            try:
+                original_condition_id = get_condition_id(dataset, patient_condition)
+                print('Condition: ', original_condition_id, '\n')
 
-            get_therapy_recommendation(patient_id, original_condition_id, dataset)
+                get_therapy_recommendation(patient_id, original_condition_id, dataset)
+            except:
+                print('Condition NOT FOUND. Retrieval failed from the Dataset.')
+
             print()
             # break
 
 
 if __name__ == '__main__':
     main()
-
-# PLOTTING CODES
-# trial_df = pd.read_csv("DF_Patients_temp.csv", encoding="unicode_escape")
-
-# display(trial_df.head())
-
-# display(trial_df.describe())
-# display(pd.DataFrame(trial_df.groupby('_kind')['_successful'].mean()))
-
-# success_rate = pd.DataFrame(trial_df.groupby('_kind')['_successful'].mean())
-# # display(success_rate.head())
-# success_rate['count'] = trial_df.groupby('_kind')['_successful'].count()
-# # display(success_rate.head())
-#
-# display(sns.jointplot(x='_successful', y='count', data=success_rate))
-#
-# plt.show()
-# therapy_user_matrix = trial_df.pivot_table(index='id', columns='_therapy', values='_successful')
-# display(therapy_user_matrix.head())
-
-# therapy_user_matrix.to_csv(r'RAHIN-01.csv', index=None)
-
-# therapy_user_matrix = trial_df.pivot_table(index='_kind', columns=['id'], values='_successful')
-# therapy_user_matrix = therapy_user_matrix.fillna(0)
-# display(therapy_user_matrix.head())
-#
-# therapy_user_matrix.to_csv(r'therapy_user_matrix.csv')
-#
-# item_similarity_df = therapy_user_matrix.corr(method='pearson')
-# display(item_similarity_df.head(50))
-#
-# item_similarity_df.to_csv(r'item_similarity_df.csv')
-# print(item_similarity_df['c_00056'])
