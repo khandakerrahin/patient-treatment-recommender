@@ -815,7 +815,7 @@
                   "kind": "c_01521"
               },
               {
-                  "id": "pc_00002",
+                  "id": "pc32",
                   "diagnosed": "20130324",
                   "cured": "20130402",
                   "kind": "c_00083"
@@ -844,7 +844,7 @@
                   "id": "tr_00001",
                   "start": "20161017",
                   "end": "20161027",
-                  "condition": "pc_00001",
+                  "condition": "pc32",
                   "therapy": "th_00442",
                   "successful": 46
               },
@@ -955,7 +955,7 @@
                   "start": "20141223",
                   "end": "20141227",
                   "condition": "pc_00002",
-                  "therapy": "th_00605",
+                  "therapy": "th_00054",
                   "successful": 28
               },
               {
@@ -963,7 +963,7 @@
                   "start": "20170531",
                   "end": "20170601",
                   "condition": "pc_00002",
-                  "therapy": "th_00594",
+                  "therapy": "th_00054",
                   "successful": 91
               },
               {
